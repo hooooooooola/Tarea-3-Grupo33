@@ -1,4 +1,3 @@
-import java.awt.*;
 import javax.swing.*;
 
 public class PanelExpendedor extends JPanel {
@@ -11,8 +10,11 @@ public class PanelExpendedor extends JPanel {
 
     private void initCompoents() {
 
+        // labelExpendedor = new JLabel("Expendedor");
+        // this.add(labelExpendedor);
+
         this.setBackground(new java.awt.Color(247, 153, 180));
-        this.setPreferredSize(new java.awt.Dimension(240, 500));
+        this.setPreferredSize(new java.awt.Dimension(240, 345));
         panelExpendedorLayout = new GroupLayout(this);
         this.setLayout(panelExpendedorLayout);
 
