@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import javax.swing.*;
 
 public class PanelComprador extends JPanel {
@@ -39,7 +40,7 @@ public class PanelComprador extends JPanel {
 
         // Configuración del panel
         this.setBackground(new java.awt.Color(200, 200, 200));
-        this.setPreferredSize(new java.awt.Dimension(120, 570));
+        this.setPreferredSize(new java.awt.Dimension(120, 500));
         panelCompradorLayout = new GroupLayout(this);
         this.setLayout(panelCompradorLayout);
 
@@ -90,4 +91,10 @@ public class PanelComprador extends JPanel {
                 .addComponent(botonComprar, 30, 30, 30)
                 .addContainerGap(166, 3000)));
     }
+
+    // @Override
+    // protected void paintComponent(Graphics g) {
+    //     super.paintComponent(g);
+    //     g.drawString("Panel Expendedor", 10, 20);
+    // }
 }   
