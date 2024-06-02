@@ -18,19 +18,20 @@ public class PanelComprador extends JPanel {
     static int Vuelto = 0;
     GroupLayout panelCompradorLayout;
     Listeners listeners;
+
     Expendedor expendedor;
 
     public PanelComprador() {
-        this.expendedor = new Expendedor(3);   // preguntara por cuantos productos poner en el expendedor
+        this.expendedor = new Expendedor(PanelPrincipal.CANTIDAD_DE_PRODUCTOS);   // preguntara por cuantos productos poner en el expendedor
         initCompoents();
     }    
     private void initCompoents() {
         listeners = new Listeners();
 
         // Botones
-        ImageIcon moneda100 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
-        ImageIcon moneda500 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
-        ImageIcon moneda1000 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
+        ImageIcon moneda100 = new ImageIcon("src\\main\\java\\imagenes\\moneda100.png");
+        ImageIcon moneda500 = new ImageIcon("src\\main\\java\\imagenes\\moneda500.png");
+        ImageIcon moneda1000 = new ImageIcon("src\\main\\java\\imagenes\\moneda1000.png");
 
         boton100 = new JButton(moneda100);
         boton100.setFocusable(false);

@@ -3,6 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class PanelPrincipal extends JPanel implements MouseListener {
+    public static final int CANTIDAD_DE_PRODUCTOS = 13;
+
     PanelComprador com;
     PanelExpendedor exp;
     PanelDeposito dep;

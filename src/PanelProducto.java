@@ -26,8 +26,15 @@ public class PanelProducto extends JPanel{
         this.setPreferredSize(new java.awt.Dimension(100, 100));
         
         ImageIcon imagenproducto = new ImageIcon("src\\main\\java\\imagenes\\"+nombrearchivo);
-        //ImageIcon imagenproducto = new ImageIcon("src\\main\\java\\imagenes\\cuadradoverde.png");
-        imagenproducto.paintIcon(this,g,cualProducto*100,ALINEACION_Y);
+        //JLabel foto = new JLabel(imagenproducto);
+        for(int i=0;i<PanelPrincipal.CANTIDAD_DE_PRODUCTOS;i++){
+            if(i<4){
+                imagenproducto.paintIcon(this,g,cualProducto*100,ALINEACION_Y-i*20);
+                //this.add(foto);
+                //foto.paintImmediately(cualProducto*100,ALINEACION_Y-i*20,100,100);
+            }
+        }
+        
         
     }
     
