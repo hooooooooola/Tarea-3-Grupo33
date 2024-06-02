@@ -14,6 +14,8 @@
 public class Expendedor {
     private Deposito<Producto> coca, sprite, fanta, super8, snickers;
     private Deposito<Moneda> monVu;
+    private Producto productoComprado = null;
+    
 
     /**El metodo constructor Expendedor es llamado por Main a la hora de probar su funcionamiento sumado a objetos Moneda y Comprador
      * @see Moneda
@@ -50,7 +52,7 @@ public class Expendedor {
      * @throws NoHayProductoException
      * @throws PagoIncorrectoException
      */
-    public Producto comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException{
+    public void comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException{
 
         if(tipo>5||tipo<1){
             monVu.addObj(m);
@@ -97,7 +99,7 @@ public class Expendedor {
                     }
                 }
             }
-            return p;
+            productoComprado = p;
         }
     /**
      * getVuelto() tiene una referencia a un objeto Deposito en el que se almacenan las monedas
@@ -107,4 +109,16 @@ public class Expendedor {
     public Moneda getVuelto() {
         return monVu.getObj();
     }
+    
+    /**
+     * getProductoo() simula un deposito de tamaño 1, en el que se almacena el producto comprado
+     * 
+     * @return el Producto que se devuelve del Deposito
+     */
+    public Producto getProducto() {
+        Producto p = productoComprado;
+        productoComprado = null;
+        return p;
+    }
+    
 }
