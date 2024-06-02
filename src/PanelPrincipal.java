@@ -54,32 +54,23 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         if(true){
             System.out.println("clic en x:"+me.getX()+" y:"+me.getY()); //se imprimirá press cada vez que se oprima un botón del mouse dentro del área
         }
-        if(me.getY()>=120&&me.getY()<=220){
+        if(me.getY()>=PanelProducto.ALINEACION_Y + 20&&me.getY()<=PanelProducto.ALINEACION_Y + 100 + 20){
             if(me.getX()>=130+(100*DatosProducto.COCACOLA.getCualProducto())&&me.getX()<=230+(100*DatosProducto.COCACOLA.getCualProducto())){
                 System.out.println("cocacola");
             }
-        }
-        if(me.getY()>=120&&me.getY()<=220){
             if(me.getX()>=130+(100*DatosProducto.FANTA.getCualProducto())&&me.getX()<=230+(100*DatosProducto.FANTA.getCualProducto())){
                 System.out.println("fanta");
             }
-        }
-        if(me.getY()>=120&&me.getY()<=220){
             if(me.getX()>=130+(100*DatosProducto.SPRITE.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SPRITE.getCualProducto())){
                 System.out.println("sprite");
             }
-        }
-        if(me.getY()>=120&&me.getY()<=220){
             if(me.getX()>=130+(100*DatosProducto.SNICKERS.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SNICKERS.getCualProducto())){
                 System.out.println("snickers");
             }
-        }
-        if(me.getY()>=120&&me.getY()<=220){
             if(me.getX()>=130+(100*DatosProducto.SUPER8.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SUPER8.getCualProducto())){
                 System.out.println("super8");
             }
         }
-        
     }
     public void mouseReleased(MouseEvent me) {;} // el llamado al soltar el botón
     public void mouseEntered(MouseEvent me) {;}  // cursor entra al área

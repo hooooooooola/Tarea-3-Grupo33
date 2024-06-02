@@ -8,7 +8,9 @@ public class Listeners {
     public class Boton100 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelComprador.Saldo += 100;
+            Moneda100 moneda100 = new Moneda100();
+            PanelComprador.Saldo += moneda100.getValor();
+            System.out.println("moneda insertada serie: "+moneda100.getSerie());
             PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
         }
     }
@@ -19,7 +21,9 @@ public class Listeners {
     public class Boton500 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelComprador.Saldo += 500;
+            Moneda500 moneda500 = new Moneda500();
+            PanelComprador.Saldo += moneda500.getValor();
+            System.out.println("moneda insertada serie: "+moneda500.getSerie());
             PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
         }
     }
@@ -30,7 +34,9 @@ public class Listeners {
     public class Boton1000 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelComprador.Saldo += 1000;
+            Moneda1000 moneda1000 = new Moneda1000();
+            PanelComprador.Saldo += moneda1000.getValor();
+            System.out.println("moneda insertada serie: "+moneda1000.getSerie());
             PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
         }
     }
@@ -39,10 +45,16 @@ public class Listeners {
     }
 
     public class BotonComprar implements ActionListener {
+        private Expendedor expendedor;
+        public BotonComprar(Expendedor expendedor) {
+            this.expendedor = expendedor;   
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (PanelComprador.Saldo - PanelComprador.Precio > 0) {
-                PanelComprador.Saldo -= PanelComprador.Precio;
+
+            if (PanelComprador.Saldo - PanelComprador.Precio >= 0) {
+                expendedor.comprarProducto(DatosProducto.COCACOLA.getCualProducto()); 
                 PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
             } else {
                 JOptionPane.showMessageDialog(null, "Saldo insuficiente");
@@ -50,7 +62,28 @@ public class Listeners {
             
         }
     }
-    public ActionListener BotonComprar() { 
-        return new BotonComprar();
+    public ActionListener BotonComprar(Expendedor expendedor) { 
+        return new BotonComprar(expendedor);
     }
+
+    public class BotonVuelto implements ActionListener {
+        Expendedor expendedor;
+        public BotonVuelto(Expendedor expendedor) {
+            this.expendedor = expendedor;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (PanelComprador.Saldo !=0) {
+                expendedor.getVuelto(); // deposito de monedas del vuelto hay que mostrarlas de alguna fomra
+                PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
+            } else {
+                JOptionPane.showMessageDialog(null, "No hay saldo");
+            }
+        }
+    }
+
+    public ActionListener BotonVuelto(Expendedor expendedor){
+        return new BotonVuelto(expendedor);
+    }   
 }
