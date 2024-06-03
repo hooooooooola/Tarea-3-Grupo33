@@ -9,6 +9,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     PanelExpendedor exp;
     PanelDeposito dep;
 
+    
+
+    
     public PanelPrincipal() {
         initComponents();   
     } 
@@ -41,7 +44,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     .addGap(15, 15, 15)
                     .addComponent(dep, -1, -1, 3000)
                     .addContainerGap(20, 20))
-                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
                     .addContainerGap(20, 20)
                     .addComponent(com, -1, -1, 3000)
                     .addContainerGap(20, 20)));
@@ -59,23 +62,31 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         if(me.getY()>=PanelProducto.ALINEACION_Y + 20&&me.getY()<=PanelProducto.ALINEACION_Y + 100 + 20){
             if(me.getX()>=130+(100*DatosProducto.COCACOLA.getCualProducto())&&me.getX()<=230+(100*DatosProducto.COCACOLA.getCualProducto())){
                 System.out.println("cocacola");
+                Listeners.BotonComprar.productoElegido = DatosProducto.COCACOLA.getCualProducto();
             }
             if(me.getX()>=130+(100*DatosProducto.FANTA.getCualProducto())&&me.getX()<=230+(100*DatosProducto.FANTA.getCualProducto())){
                 System.out.println("fanta");
+                Listeners.BotonComprar.productoElegido = DatosProducto.FANTA.getCualProducto();
             }
             if(me.getX()>=130+(100*DatosProducto.SPRITE.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SPRITE.getCualProducto())){
                 System.out.println("sprite");
+                Listeners.BotonComprar.productoElegido = DatosProducto.SPRITE.getCualProducto();
             }
             if(me.getX()>=130+(100*DatosProducto.SNICKERS.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SNICKERS.getCualProducto())){
                 System.out.println("snickers");
+                Listeners.BotonComprar.productoElegido = DatosProducto.SNICKERS.getCualProducto();
             }
             if(me.getX()>=130+(100*DatosProducto.SUPER8.getCualProducto())&&me.getX()<=230+(100*DatosProducto.SUPER8.getCualProducto())){
                 System.out.println("super8");
+                Listeners.BotonComprar.productoElegido = DatosProducto.SUPER8.getCualProducto();
             }
         }
     }
     public void mouseReleased(MouseEvent me) {;} // el llamado al soltar el botón
     public void mouseEntered(MouseEvent me) {;}  // cursor entra al área
     public void mouseExited(MouseEvent me) {;}   // cursor sale del área
+    
+    
+    
 }
         

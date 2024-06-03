@@ -13,7 +13,7 @@ public class PanelComprador extends JPanel {
     private static JLabel labelPrecioValor;
     private static JLabel labelSaldoValor;
     private static JLabel labelVuelto;
-    static int Precio;
+    static int Precio = 300;
     static int Saldo = 0;
     static int Vuelto = 0;
     GroupLayout panelCompradorLayout;

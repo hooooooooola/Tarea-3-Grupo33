@@ -46,6 +46,7 @@ public class Listeners {
 
     public class BotonComprar implements ActionListener {
         private Expendedor expendedor;
+        static int productoElegido;
         public BotonComprar(Expendedor expendedor) {
             this.expendedor = expendedor;   
         }
@@ -54,13 +55,18 @@ public class Listeners {
         public void actionPerformed(ActionEvent e) {
 
             if (PanelComprador.Saldo - PanelComprador.Precio >= 0) {
-                expendedor.comprarProducto(DatosProducto.COCACOLA.getCualProducto()); 
+                expendedor.comprarProducto(productoElegido); 
                 PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
             } else {
                 JOptionPane.showMessageDialog(null, "Saldo insuficiente");
             }
             
         }
+
+        public static int getProductoElegido() {
+            return productoElegido;
+        }
+    
     }
     public ActionListener BotonComprar(Expendedor expendedor) { 
         return new BotonComprar(expendedor);
