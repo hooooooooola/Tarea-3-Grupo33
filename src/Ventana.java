@@ -13,9 +13,15 @@ public class Ventana extends JFrame{
         this.add(panelPrincipal);
         
 
+        this.setTitle("Touhou");
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
+        this.add(panelPrincipal);
+        setResizable(false);
+        
         pack();
         this.setLocationRelativeTo(null);
-        setVisible(true);
+        this.setSize(800,900 );
        
     }
 }

@@ -8,7 +8,7 @@ public class PanelDeposito extends JPanel {
 
     private void initComponents() {
         this.setBackground(new java.awt.Color(195, 236, 247));
-        this.setPreferredSize(new java.awt.Dimension(240, 120));
+        this.setPreferredSize(new java.awt.Dimension(600, 120));
     }
 
     // @Override
