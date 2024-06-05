@@ -1,7 +1,9 @@
+import javax.swing.*;
+
 /** 
  * La clase Expendedor se encarga principalmente de dos cosas: 
  * recibir una referencia a Moneda y entregar un producto a traves de el metodo comprarProducto() y
- * entregar el vuelto gracias al metodo getVuelto()
+ * entregar el PanelComprador.Saldo gracias al metodo getPanelComprador.Saldo()
  * 
  * @author Joseph Matamala
  * @author Felipe Tilleria
@@ -14,6 +16,7 @@
 public class Expendedor {
     private Deposito<Producto> coca, sprite, fanta, super8, snickers;
     private Deposito<Moneda> monVu;
+    private String sabor;
     private Producto productoComprado = null;
     
 
@@ -23,12 +26,15 @@ public class Expendedor {
      * Este metodo hace uso de la variable numProductos la cual, en un ciclo for, agrega dicha cantidad de productos a cada deposito de dulces o bebidas.
     */
     public Expendedor(int numProductos) { 
+
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
         super8 = new Deposito<>();
         snickers = new Deposito<>();
         monVu = new Deposito<>();
+
+        System.out.println("se creo un expendedor");
 
         for (int i = 0; i < numProductos; i++) {
             coca.addObj(new CocaCola(i));
@@ -44,70 +50,63 @@ public class Expendedor {
      * 
      * @param m es la Moneda insertada a la maquina
      * @param tipo el tipo de producto (dulce o bebida) que se va a comprar
-     * @return retorna el producto si todo sale bien, en caso contrario lanza una excepcion
-     * 
-     * 
-     * Este tambien se encarga de manejar las excepciones que pueden ocurrir en casos particulares:
-     * @throws PagoInsuficienteException
-     * @throws NoHayProductoException
-     * @throws PagoIncorrectoException
-     */
-    public void comprarProducto(Moneda m, int tipo) throws PagoInsuficienteException, NoHayProductoException, PagoIncorrectoException{
+     * @return no retorna nada, es de tipo void
+    */
 
-        if(tipo>5||tipo<1){
-            monVu.addObj(m);
-            throw new NoHayProductoException("\033[0;31m" + "El numero de producto no es valido" + "\033[0m");
+
+    public void comprarProducto(int tipo) { // tipo de producto segun el producto seleccionado con MouseListener    
+        Producto p = null;
+        if (tipo == DatosProducto.COCACOLA.getCualProducto()) {
+            p = coca.getObj();
+        } else if (tipo == DatosProducto.SPRITE.getCualProducto()) {
+            p = sprite.getObj();
+        } else if (tipo == DatosProducto.FANTA.getCualProducto()) {
+            p = fanta.getObj();
+        } else if (tipo == DatosProducto.SUPER8.getCualProducto()) {
+            p = super8.getObj();
+        } else if (tipo == DatosProducto.SNICKERS.getCualProducto()) {
+            p = snickers.getObj();
         }
 
-        DatosProducto[] arrProductos = DatosProducto.values();
-        int precio = arrProductos[tipo-1].getPrecioProducto();
-
-        if (m == null) {
-            throw new PagoIncorrectoException("\033[0;31m" + "No has insertado monedas en el expendedor" + "\033[0m");
-        }
-
-        if (m.getValor() < precio) {
-            monVu.addObj(m);
-            throw new PagoInsuficienteException("\033[0;31m" + "El saldo es insuficiente para comprar el producto" + "\033[0m");
-        }
-
-            Producto p = null;
-            if (tipo == DatosProducto.COCACOLA.getCualProducto()) {
-                p = coca.getObj();
-            } else if (tipo == DatosProducto.SPRITE.getCualProducto()) {
-                p = sprite.getObj();
-            } else if (tipo == DatosProducto.FANTA.getCualProducto()) {
-                p = fanta.getObj();
-            } else if (tipo == DatosProducto.SUPER8.getCualProducto()) {
-                p = super8.getObj();
-            } else if (tipo == DatosProducto.SNICKERS.getCualProducto()) {
-                p = snickers.getObj();
-            }
-            if (p == null) {
-                monVu.addObj(m);
-                throw new NoHayProductoException("\033[0;31m" + "No quedan productos en el expendedor" + "\033[0m");
-            } 
-            
-            else {
-                int vuelto = m.getValor() - precio;
-
-                while (vuelto > 0) {
-                    if (vuelto >= 100) {
-                        monVu.addObj(new Moneda100());
-                        vuelto -= 100;
-                        continue;
-                    }
-                }
-            }
+        if (p == null) {
+            JOptionPane.showMessageDialog(null, "No quedan productos");
+            sabor = null; 
+        } else {
             productoComprado = p;
+            System.out.println("comprarProducto: " + PanelComprador.Saldo + " " + PanelComprador.Precio);
+            PanelComprador.Saldo -=  PanelComprador.Precio;
+            System.out.println("Saldo: " + PanelComprador.Saldo);
+            sabor = p.sabor();
+            System.err.println("Producto comprado: " + sabor);
         }
+    }
+
+    public Deposito getVuelto(){    
+        while (PanelComprador.Saldo > 0) {
+            if (PanelComprador.Saldo >= 1000) {
+                monVu.addObj(new Moneda1000());
+                PanelComprador.Saldo -= 1000;           
+            } else if (PanelComprador.Saldo >= 500) {
+                monVu.addObj(new Moneda500());
+                PanelComprador.Saldo -= 500;
+            } else if (PanelComprador.Saldo >= 100){
+                monVu.addObj(new Moneda100());
+                PanelComprador.Saldo -= 100;
+            }
+        }
+        for(int i=0;i<monVu.size();i++){
+            System.out.println("moneda extraída serie: "+monVu.get(i).getSerie());
+        }
+        System.out.println("getVuelto");
+        return monVu;
+    }
+
     /**
-     * getVuelto() tiene una referencia a un objeto Deposito en el que se almacenan las monedas
-     * 
-     * @return la Moneda que se devuelve del Deposito
+     * queConsumiste() es un getter del producto que fue elegido
+     * @return retorna un String con el nombre del producto
      */
-    public Moneda getVuelto() {
-        return monVu.getObj();
+    public String queConsumiste(){
+        return sabor;
     }
     
     /**
