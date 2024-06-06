@@ -1,4 +1,6 @@
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class PanelComprador extends JPanel {
@@ -13,56 +15,44 @@ public class PanelComprador extends JPanel {
     private static JLabel labelPrecioValor;
     private static JLabel labelSaldoValor;
     private static JLabel labelVuelto;
-    static int Precio = 300;
-    static int Saldo = 0;
-    static int Vuelto = 0;
-    GroupLayout panelCompradorLayout;
-    Listeners listeners;
+    private Repaint repaint;
+    
+    static int productoElegido = -1;
+    static int precio = 0;
+    static int saldo = 0;
+    static int vuelto = 0;
 
-    Expendedor expendedor;
+    private GroupLayout panelCompradorLayout;
+    private Listeners listeners;
+    private Expendedor expendedor;
 
     public PanelComprador() {
-        this.expendedor = new Expendedor(PanelPrincipal.CANTIDAD_DE_PRODUCTOS);   // preguntara por cuantos productos poner en el expendedor
-        initCompoents();
+        this.expendedor = new Expendedor(PanelPrincipal.CANTIDAD_DE_PRODUCTOS);
+        initComponents();
+        setupLayout();
     }    
-    private void initCompoents() {
+
+    public void setComprarEventListener(Repaint listener) {
+        this.repaint = listener;
+    }
+
+    private void initComponents() {
         listeners = new Listeners();
 
         // Botones
-        ImageIcon moneda100 = new ImageIcon("src\\main\\java\\imagenes\\moneda100.png");
-        ImageIcon moneda500 = new ImageIcon("src\\main\\java\\imagenes\\moneda500.png");
-        ImageIcon moneda1000 = new ImageIcon("src\\main\\java\\imagenes\\moneda1000.png");
+        boton100 = createButton("src\\main\\java\\imagenes\\moneda100.png", "Insertar 100 pesos a la máquina", listeners.Boton100());
+        boton500 = createButton("src\\main\\java\\imagenes\\moneda500.png", "Insertar 500 pesos a la máquina", listeners.Boton500());
+        boton1000 = createButton("src\\main\\java\\imagenes\\moneda1000.png", "Insertar 1000 pesos a la máquina", listeners.Boton1000());
 
-        boton100 = new JButton(moneda100);
-        boton100.setFocusable(false);
-        boton100.setToolTipText("Insertar 100 pesos a la máquina");
-        boton100.setSize(100,100);
-        boton100.setOpaque(false);
-        boton100.setContentAreaFilled(false);
-        boton100.setBorderPainted(false);
-        boton100.addActionListener(listeners.Boton100());
-
-        boton500 = new JButton(moneda500);
-        boton500.setFocusable(false);
-        boton500.setToolTipText("Insertar 500 pesos a la máquina");
-        boton500.setOpaque(false);
-        boton500.setContentAreaFilled(false);
-        boton500.setBorderPainted(false);
-        boton500.addActionListener(listeners.Boton500());
-        
-
-        boton1000 = new JButton(moneda1000);
-        boton1000.setFocusable(false);
-        boton1000.setToolTipText("Insertar 1000 pesos a la máquina");
-        boton1000.setOpaque(false);
-        boton1000.setContentAreaFilled(false);
-        boton1000.setBorderPainted(false);
-        boton1000.addActionListener(listeners.Boton1000());
-
-        
         botonComprar = new JButton("Comprar");
         botonComprar.setFocusable(false);
         botonComprar.addActionListener(listeners.BotonComprar(expendedor));
+        botonComprar.addActionListener(e -> {
+            // Cuando se hace clic en el botón de comprar, se dispara el evento
+            if (repaint != null) {
+                repaint.onComprarClicked();
+            }
+        });
 
         botonVuelto = new JButton("Obtener Vuelto");
         botonVuelto.setFocusable(false);
@@ -72,17 +62,30 @@ public class PanelComprador extends JPanel {
         labelMonedas = new JLabel("Monedas");
         labelPrecio = new JLabel("Precio:");
         labelSaldo = new JLabel("Saldo:");
-        labelSaldoValor = new JLabel("$" + Saldo);
-        labelPrecioValor = new JLabel("$" + Precio); 
-        labelVuelto = new JLabel("Vuelto: $" + Vuelto);
+        labelSaldoValor = new JLabel("$" + saldo);
+        labelPrecioValor = new JLabel("$" + precio); 
+        labelVuelto = new JLabel("Vuelto: $" + vuelto);
 
-        // Configuración del panel
         this.setBackground(new java.awt.Color(200, 200, 200));
         this.setPreferredSize(new java.awt.Dimension(120, 400));
+    }
+
+    private JButton createButton(String ruta, String nombre, ActionListener actionListener) {
+        ImageIcon icon = new ImageIcon(ruta);
+        JButton button = new JButton(icon);
+        button.setFocusable(false);
+        button.setToolTipText(nombre);
+        button.setOpaque(false);
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
+        button.addActionListener(actionListener);
+        return button;
+    }
+
+    private void setupLayout() {
         panelCompradorLayout = new GroupLayout(this);
         this.setLayout(panelCompradorLayout);
 
-        // GroupLayout horizontal
         panelCompradorLayout.setHorizontalGroup(
             panelCompradorLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
             .addGroup(panelCompradorLayout.createSequentialGroup()
@@ -104,10 +107,9 @@ public class PanelComprador extends JPanel {
                     .addComponent(botonVuelto, -1, -1, 3000))
                 .addContainerGap()));
 
-        // GroupLayout vertical
         panelCompradorLayout.setVerticalGroup(
             panelCompradorLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup (panelCompradorLayout.createSequentialGroup()
+            .addGroup(panelCompradorLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(labelMonedas)
                 .addGap(30, 30, 30)
@@ -124,29 +126,26 @@ public class PanelComprador extends JPanel {
                 .addComponent(labelSaldo)
                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSaldoValor, -1, -1, -1)
-                .addGap(30,30,30)
+                .addGap(30, 30, 30)
                 .addComponent(botonComprar, 30, 30, 30)
                 .addGap(15, 15, 15) 
                 .addComponent(botonVuelto, 30, 30, 30)
-                .addContainerGap(166, 3000)));   
+                .addContainerGap(166, 3000)));
     }
 
-
-
-    public static void setLabelSaldoValor(int Saldo) {
-        labelSaldoValor.setText("$" + Saldo);
+    public static void setLabelSaldoValor(int saldo) {
+        labelSaldoValor.setText("$" + saldo);
     }    
 
-    public static void setLabelPrecioValor(int Precio) {
-        labelPrecioValor.setText("$" + Precio);
+    public static void setLabelPrecioValor(int precio) {
+        labelPrecioValor.setText("$" + precio);
     }
 
-    public static void setLabelPrecio(Object object) {
-        labelPrecio.setText(object.toString());
+    public static void setLabelPrecio(String texto) {
+        labelPrecio.setText(texto);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-         super.paintComponent(g);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
     }
-} 
+}

@@ -11,9 +11,8 @@ public class PanelDeposito extends JPanel {
         this.setPreferredSize(new java.awt.Dimension(600, 120));
     }
 
-    // @Override
-    // protected void paintComponent(java.awt.Graphics g) {
-    //     super.paintComponent(g);
-    //     g.drawString("Panel Deposito", 10, 20);
-    // }
+    @Override
+    protected void paintComponent(java.awt.Graphics g) {
+        super.paintComponent(g);
+    }
 }

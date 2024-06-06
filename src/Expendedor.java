@@ -3,7 +3,7 @@ import javax.swing.*;
 /** 
  * La clase Expendedor se encarga principalmente de dos cosas: 
  * recibir una referencia a Moneda y entregar un producto a traves de el metodo comprarProducto() y
- * entregar el PanelComprador.Saldo gracias al metodo getPanelComprador.Saldo()
+ * entregar el PanelComprador.saldo gracias al metodo getPanelComprador.saldo()
  * 
  * @author Joseph Matamala
  * @author Felipe Tilleria
@@ -14,7 +14,7 @@ import javax.swing.*;
  * 
  */
 public class Expendedor {
-    private Deposito<Producto> coca, sprite, fanta, super8, snickers;
+    public static Deposito<Producto> coca, sprite, fanta, super8, snickers;
     private Deposito<Moneda> monVu;
     private String sabor;
 
@@ -83,9 +83,9 @@ public class Expendedor {
             sabor = null; 
         } else {
             sabor = p.sabor();
-            System.out.println("Producto comprado: " + sabor + ", valor: " + PanelComprador.Precio + ", Saldo: " + PanelComprador.Saldo);
-            PanelComprador.Saldo -=  PanelComprador.Precio;
-            System.out.println("Saldo despues de comprar: " + PanelComprador.Saldo);
+            System.out.println("Producto comprado: " + sabor + ", valor: " + PanelComprador.precio + ", Saldo: " + PanelComprador.saldo);
+            PanelComprador.saldo -=  PanelComprador.precio;
+            System.out.println("Saldo despues de comprar: " + PanelComprador.saldo);
             System.out.println("");
         }
         return p;
@@ -94,16 +94,16 @@ public class Expendedor {
     public Deposito getVuelto(){    
 
         monVu.clear();
-        while (PanelComprador.Saldo > 0) {
-            if (PanelComprador.Saldo >= 1000) {
+        while (PanelComprador.saldo > 0) {
+            if (PanelComprador.saldo >= 1000) {
                 monVu.addObj(new Moneda1000());
-                PanelComprador.Saldo -= 1000;           
-            } else if (PanelComprador.Saldo >= 500) {
+                PanelComprador.saldo -= 1000;           
+            } else if (PanelComprador.saldo >= 500) {
                 monVu.addObj(new Moneda500());
-                PanelComprador.Saldo -= 500;
-            } else if (PanelComprador.Saldo >= 100){
+                PanelComprador.saldo -= 500;
+            } else if (PanelComprador.saldo >= 100){
                 monVu.addObj(new Moneda100());
-                PanelComprador.Saldo -= 100;
+                PanelComprador.saldo -= 100;
             }
 
         }

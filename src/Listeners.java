@@ -1,17 +1,17 @@
 import java.awt.event.ActionEvent;
+import java.util.EventListener;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class Listeners {
-    
 
     public class Boton100 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             Moneda100 moneda100 = new Moneda100();
-            PanelComprador.Saldo += moneda100.getValor();
+            PanelComprador.saldo += moneda100.getValor();
             System.out.println("moneda insertada serie: "+moneda100.getSerie());
-            PanelComprador.setLabelSaldoValor(PanelComprador.Saldo);
+            PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
         }
     }
     public ActionListener Boton100() {
@@ -22,9 +22,9 @@ public class Listeners {
         @Override
         public void actionPerformed(ActionEvent e) {
             Moneda500 moneda500 = new Moneda500();
-            PanelComprador.Saldo += moneda500.getValor();
+            PanelComprador.saldo += moneda500.getValor();
             System.out.println("moneda insertada serie: "+moneda500.getSerie());
-            PanelComprador.setLabelSaldoValor(PanelComprador.Saldo);
+            PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
         }
     }
     public ActionListener Boton500() {
@@ -35,9 +35,9 @@ public class Listeners {
         @Override
         public void actionPerformed(ActionEvent e) {
             Moneda1000 moneda1000 = new Moneda1000();
-            PanelComprador.Saldo += moneda1000.getValor();
+            PanelComprador.saldo += moneda1000.getValor();
             System.out.println("moneda insertada serie: "+moneda1000.getSerie());
-            PanelComprador.setLabelSaldoValor(PanelComprador.Saldo);
+            PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
         }
     }
     public ActionListener Boton1000() {
@@ -45,8 +45,8 @@ public class Listeners {
     }
 
     public class BotonComprar implements ActionListener {
-        private Expendedor expendedor;
-        static int productoElegido;
+        Expendedor expendedor;
+       
         public BotonComprar(Expendedor expendedor) {
             this.expendedor = expendedor;   
         }
@@ -54,21 +54,22 @@ public class Listeners {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if (PanelComprador.Saldo - PanelComprador.Precio >= 0) {
-                expendedor.comprarProducto(productoElegido); 
-                PanelComprador.setLabelSaldoValor(PanelComprador.Saldo);
+            if (PanelComprador.productoElegido != -1) {
+                if (PanelComprador.saldo - PanelComprador.precio >= 0) {
+                    expendedor.comprarProducto(PanelComprador.productoElegido); 
+                    PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Saldo insuficiente");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Saldo insuficiente");
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado un producto");
             }
             
         }
-
-        public static int getProductoElegido() {
-            return productoElegido;
-        }
     
     }
-    public ActionListener BotonComprar(Expendedor expendedor) { 
+    public ActionListener BotonComprar(Expendedor expendedor ) { 
         return new BotonComprar(expendedor);
     }
 
@@ -80,9 +81,9 @@ public class Listeners {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (PanelComprador.Saldo !=0) {
+            if (PanelComprador.saldo !=0) {
                 expendedor.getVuelto(); // deposito de monedas del vuelto hay que mostrarlas de alguna fomra
-                PanelComprador.setLabelSaldoValor(PanelComprador.Saldo);
+                PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
             } else {
                 JOptionPane.showMessageDialog(null, "No hay saldo");
             }
