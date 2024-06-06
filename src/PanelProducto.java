@@ -54,27 +54,27 @@ public class PanelProducto extends JPanel{
         if(Expendedor.intCompra == 1){
             Expendedor.intCompra = 0;
             compra = new ImageIcon("src\\main\\java\\imagenes\\cocacola.png");
-            compra.paintIcon(this ,g ,50,650);
+            compra.paintIcon(this ,g ,250,650);
         }
         else if(Expendedor.intCompra == 2){
             Expendedor.intCompra = 0;
             compra = new ImageIcon("src\\main\\java\\imagenes\\fanta.png");
-            compra.paintIcon(this ,g ,50,650);
+            compra.paintIcon(this ,g ,250,650);
         }
         else if(Expendedor.intCompra == 3){
             Expendedor.intCompra = 0;
             compra = new ImageIcon("src\\main\\java\\imagenes\\sprite.png");
-            compra.paintIcon(this ,g ,50,650);
+            compra.paintIcon(this ,g ,250,650);
         }
         else if(Expendedor.intCompra == 4){
             Expendedor.intCompra = 0;
             compra = new ImageIcon("src\\main\\java\\imagenes\\snickers.png");
-            compra.paintIcon(this ,g ,50,650);
+            compra.paintIcon(this ,g ,250,650);
         }
         else if(Expendedor.intCompra == 5){
             Expendedor.intCompra = 0;
             compra = new ImageIcon("src\\main\\java\\imagenes\\super8.png");
-            compra.paintIcon(this ,g ,50,650);
+            compra.paintIcon(this ,g ,250,650);
         }
         
         if (nombrearchivo == "cocacola.png"){

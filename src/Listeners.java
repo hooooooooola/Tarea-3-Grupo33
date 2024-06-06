@@ -53,8 +53,10 @@ public class Listeners {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if (PanelComprador.productoElegido != -1) {
+            if(Expendedor.espacioDisponible == false){
+                JOptionPane.showMessageDialog(null, "Retira tu producto antes de comprar otro ");
+            }
+            else if (PanelComprador.productoElegido != -1) {
                 if (PanelComprador.saldo - PanelComprador.precio >= 0) {
                     expendedor.comprarProducto(PanelComprador.productoElegido); 
                     PanelComprador.setLabelSaldoValor(PanelComprador.saldo);

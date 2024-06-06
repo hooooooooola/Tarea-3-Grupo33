@@ -44,7 +44,10 @@ public class PanelPrincipal extends JPanel implements MouseListener {
              * Cuando se dispara el evento de comprar en PanelComprador,
              * se llama a este código para repintar PanelPrincipal
              */
-            repaint();
+            if(Expendedor.espacioDisponible == true){
+                repaint();
+            }
+            
             
         });
         /**
@@ -119,7 +122,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     }
                     
                     
-                    if(y >= 670 && y <= 770 && x >= 67 && x <= 167){
+                    if(y >= 670 && y <= 770 && x >= 267 && x <= 367){
                         if(com.getExpendedor().getProductoComprado() == null){
             JOptionPane.showMessageDialog(null, "Aún no has comprado un producto para retirar");
             }
