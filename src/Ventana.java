@@ -21,11 +21,7 @@ public class Ventana extends JFrame{
         
         pack();
         this.setLocationRelativeTo(null);
-<<<<<<< HEAD
         this.setSize(1280,720);
-=======
-        this.setSize(800,900 );
->>>>>>> pruebaInterfaz
        
     }
 }

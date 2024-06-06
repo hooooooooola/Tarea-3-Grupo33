@@ -10,13 +10,7 @@ public class PanelComprador extends JPanel {
     private JButton botonComprar;
     private JButton botonVuelto;
     private JLabel labelMonedas;
-<<<<<<< HEAD
-    private JLabel labelPrecio;
-    private JLabel labelTotal;
-    private JLabel labelTotalValor;
-=======
     private static JLabel labelPrecio;
->>>>>>> pruebaInterfaz
     private JLabel labelSaldo;
     private static JLabel labelPrecioValor;
     private static JLabel labelSaldoValor;
@@ -41,43 +35,6 @@ public class PanelComprador extends JPanel {
         initComponents();
         setupLayout();
     }    
-<<<<<<< HEAD
-    private void initCompoents() {
-        listeners = new Listeners();
-
-        // Botones
-        ImageIcon moneda100 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
-        ImageIcon moneda500 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
-        ImageIcon moneda1000 = new ImageIcon("src\\main\\java\\imagenes\\100pesos.png");
-
-        boton100 = new JButton(moneda100);
-        boton100.setFocusable(false);
-        boton100.setToolTipText("Insertar 100 pesos a la máquina");
-        boton100.setSize(100,100);
-        boton100.setOpaque(false);
-        boton100.setContentAreaFilled(false);
-        boton100.setBorderPainted(false);
-        boton100.addActionListener(listeners.Boton100());
-
-        boton500 = new JButton(moneda500);
-        boton500.setFocusable(false);
-        boton500.setToolTipText("Insertar 500 pesos a la máquina");
-        boton500.setOpaque(false);
-        boton500.setContentAreaFilled(false);
-        boton500.setBorderPainted(false);
-        boton500.addActionListener(listeners.Boton500());
-        
-
-        boton1000 = new JButton(moneda1000);
-        boton1000.setFocusable(false);
-        boton1000.setToolTipText("Insertar 1000 pesos a la máquina");
-        boton1000.setOpaque(false);
-        boton1000.setContentAreaFilled(false);
-        boton1000.setBorderPainted(false);
-        boton1000.addActionListener(listeners.Boton1000());
-
-        
-=======
 
     public void setComprarEventListener(Repaint listener) {
         this.repaint = listener;
@@ -91,7 +48,6 @@ public class PanelComprador extends JPanel {
         boton500 = createButton("src\\main\\java\\imagenes\\moneda500.png", "Insertar 500 pesos a la máquina", listeners.Boton500());
         boton1000 = createButton("src\\main\\java\\imagenes\\moneda1000.png", "Insertar 1000 pesos a la máquina", listeners.Boton1000());
 
->>>>>>> pruebaInterfaz
         botonComprar = new JButton("Comprar");
         botonComprar.setFocusable(false);
         botonComprar.addActionListener(listeners.BotonComprar(expendedor));
@@ -181,19 +137,6 @@ public class PanelComprador extends JPanel {
                 .addContainerGap(166, 3000)));
     }
 
-<<<<<<< HEAD
-
-
-    public static void setlabelSaldoValor(int Saldo) {
-        labelSaldoValor.setText(Saldo + "$");
-    } 
-
-    @Override
-    protected void paintComponent(Graphics g) {
-         super.paintComponent(g);
-    }
-} 
-=======
     public static void setLabelSaldoValor(int saldo) {
         labelSaldoValor.setText("$" + saldo);
     }    
@@ -210,4 +153,3 @@ public class PanelComprador extends JPanel {
         super.paintComponent(g);
     }
 }
->>>>>>> pruebaInterfaz
