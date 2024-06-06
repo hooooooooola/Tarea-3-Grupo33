@@ -18,6 +18,8 @@ public class Expendedor{
     private Deposito<Moneda> monVu;
     private String sabor;
     private Producto productoComprado = null;
+    public static boolean espacioDisponible = true;
+
     public Producto getProductoComprado() {
         return productoComprado;
     }
@@ -103,6 +105,7 @@ public class Expendedor{
             sabor = null; 
         } else {
             productoComprado = p;
+            espacioDisponible = false;
             sabor = p.sabor();
             System.out.println("Producto comprado: " + sabor + ", valor: " + PanelComprador.precio + ", Saldo: " + PanelComprador.saldo);
             PanelComprador.saldo -=  PanelComprador.precio;
@@ -147,6 +150,7 @@ public class Expendedor{
         Producto p = productoComprado;
         System.out.println("getProducto: "+p.sabor()+" serie: "+p.getSerie());
         productoComprado = null;
+        espacioDisponible = true;
         return p;
     }
 

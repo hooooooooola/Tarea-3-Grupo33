@@ -18,10 +18,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         setupLayout();
     } 
 
-    
-
-
-
     private void initComponents() {
         com = new PanelComprador();
         exp = new PanelExpendedor();
@@ -68,10 +64,6 @@ public class PanelPrincipal extends JPanel implements MouseListener {
                     .addContainerGap(20, 20))
         );
     }
-
-
-    
-
     
     public void mouseClicked(MouseEvent me) {;} // es llamado cuando el press y el release ocurren en el mismo pixel
     
@@ -83,13 +75,20 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             System.out.println("clic en x:"+me.getX()+" y:"+me.getY()); //se imprimirá press cada vez que se oprima un botón del mouse dentro del área
         }
         if (y >= PanelProducto.Estante1 + 22 && y <= PanelProducto.Estante1 + 122) {
+            if(Expendedor.espacioDisponible == false){
+                JOptionPane.showMessageDialog(null, "Retira tu producto antes de comprar otro ");
+            }
             productosClick(x, DatosProducto.COCACOLA, 132, 223);
             productosClick(x, DatosProducto.FANTA, 268, 368);
             productosClick(x, DatosProducto.SPRITE, 412, 500);
         } else if (y >= PanelProducto.Estante2 + 20 && y <= PanelProducto.Estante2 + 120) {
+            if(Expendedor.espacioDisponible == false){
+                JOptionPane.showMessageDialog(null, "Retira tu producto antes de comprar otro ");
+            }
             productosClick(x, DatosProducto.SUPER8, 98, 244);
             productosClick(x, DatosProducto.SNICKERS, 246, 395 );
         }
+        
 
         if(y >= 670 && y <= 770 && x >= 67 && x <= 167){
             if(com.getExpendedor().getProductoComprado() == null){
@@ -98,10 +97,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             else{
                 com.getExpendedor().getProducto();
                 repaint();
-            }
-            
+                }
+            } 
         }
-    }
     
 
     private void productosClick(int x, DatosProducto producto, int min, int max) {
