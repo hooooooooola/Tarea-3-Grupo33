@@ -81,7 +81,7 @@ public class Expendedor {
         }
     }
 
-    public Deposito getVuelto(){    
+    public Deposito<Moneda> getVuelto(){    
         while (PanelComprador.Saldo > 0) {
             if (PanelComprador.Saldo >= 1000) {
                 monVu.addObj(new Moneda1000());
