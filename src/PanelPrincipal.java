@@ -13,6 +13,9 @@ public class PanelPrincipal extends JPanel implements MouseListener {
     private GroupLayout panelPrincipalLayout;
 
 
+    
+
+    
     public PanelPrincipal() {
         initComponents();   
         setupLayout();
