@@ -2,41 +2,8 @@ import java.awt.Graphics;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-/**
- * PanelComprador se encarga de la interfaz gráfica que contiene el intercambio de monedas entre el comprador y la máquina.
- * 
- * @author Darío Sepúlveda, Felipe Tillería
- * @since 29 de mayo de 2024
- */
-
 
 public class PanelComprador extends JPanel {
-    /**
-     * @param boton100 el botón en la interfaz gráfica correspondiente a insertar 100 pesos a la máquina.
-     * @param boton500 el botón en la interfaz gráfica correspondiente a insertar 500 pesos a la máquina.
-     * @param boton1000 el botón en la interfaz gráfica correspondiente a insertar 1000 pesos a la máquina.
-     * @param botonComprar el botón que confirma la compra del producto seleccionado.
-     * @param botonVuelto el botón de la interfaz que devuelve las monedas que haya insertado el comprador en el expendedor, o el vuelto que haya sobrado.
-     *
-     * 
-     * @param labelMonedas texto que aparece con "Monedas" en pantalla.
-     * @param labelPrecio texto que aparece con "Precio" en pantalla.
-     * @param labelSaldo texto que aparece con "Saldo" en pantalla.
-     * 
-     * 
-     * @param labelPrecioValor
-     * @param labelSaldoValor
-     * @param labelVuelto
-     * 
-     * 
-     * @param Precio el costo del producto que se va a comprar
-     * @param Saldo el presupuesto que tiene el comprador dentro de la máquina
-     * @param Vuelto el vuelto que se planea devolver al comprador cuando presione el botón para este.
-     * 
-     * 
-     * @param panelCompradorLayout Disposición de los botones dentro del panel gráfico. Con esto se puede configurar correctamente dónde va cada componente.
-     * @param listeners referencia a la clase Listeners que contiene las reacciones de presionar cada botón dentro de la ventana.
-     */
     private JButton boton100;    
     private JButton boton500;
     private JButton boton1000;
@@ -62,8 +29,6 @@ public class PanelComprador extends JPanel {
     public Expendedor getExpendedor() {
         return expendedor;
     }
-
-    Expendedor expendedor;
 
     public PanelComprador() {
         this.expendedor = new Expendedor(PanelPrincipal.CANTIDAD_DE_PRODUCTOS);
