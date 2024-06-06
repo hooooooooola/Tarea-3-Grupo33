@@ -26,6 +26,10 @@ public class PanelComprador extends JPanel {
     private Listeners listeners;
     private Expendedor expendedor;
 
+    public Expendedor getExpendedor() {
+        return expendedor;
+    }
+
     public PanelComprador() {
         this.expendedor = new Expendedor(PanelPrincipal.CANTIDAD_DE_PRODUCTOS);
         initComponents();

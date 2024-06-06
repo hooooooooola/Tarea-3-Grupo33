@@ -30,6 +30,8 @@ public class PanelExpendedor extends JPanel {
         sprite = new PanelProducto(DatosProducto.SPRITE.getCualProducto(), "sprite.png", 3, PanelProducto.Estante1);
         super8 = new PanelProducto(DatosProducto.SUPER8.getCualProducto(), "super8.png", 1, PanelProducto.Estante2);
         snickers = new PanelProducto(DatosProducto.SNICKERS.getCualProducto(), "snickers.png", 2 , PanelProducto.Estante2);
+
+        
     }
 
 

@@ -13,12 +13,26 @@ import javax.swing.*;
  * 
  * 
  */
-public class Expendedor {
+public class Expendedor{
     public static Deposito<Producto> coca, sprite, fanta, super8, snickers;
     private Deposito<Moneda> monVu;
     private String sabor;
+    private Producto productoComprado = null;
+    public Producto getProductoComprado() {
+        return productoComprado;
+    }
+
+    public void setProductoComprado(Producto productoComprado) {
+        this.productoComprado = productoComprado;
+    }
+
+    //private static JLabel labelCompra;
+    public static int intCompra;
 
 
+    //public static  JLabel getLabelCompra() {
+    //    return labelCompra;
+    //}
 
     /**El metodo constructor Expendedor es llamado por Main a la hora de probar su funcionamiento sumado a objetos Moneda y Comprador
      * @see Moneda
@@ -56,39 +70,46 @@ public class Expendedor {
     */
 
 
-    public Producto comprarProducto(int tipo) { // tipo de producto segun el producto seleccionado con MouseListener    
-
+    public void comprarProducto(int tipo) { // tipo de producto segun el producto seleccionado con MouseListener    
 
         Producto p = null;
         if (tipo == DatosProducto.COCACOLA.getCualProducto()) {
             p = coca.getObj();
+            intCompra = 1;
             System.out.println("quedan: " + coca.size() + " cocas");
         } else if (tipo == DatosProducto.SPRITE.getCualProducto()) {
             p = sprite.getObj();
+            intCompra = 3;
             System.out.println("quedan: " + sprite.size() + " sprites");
         } else if (tipo == DatosProducto.FANTA.getCualProducto()) {
             p = fanta.getObj();
+            intCompra = 2;
             System.out.println("quedan: " + fanta.size() + " fantas");
         } else if (tipo == DatosProducto.SUPER8.getCualProducto()) {
             p = super8.getObj();
+            intCompra = 5;
+
             System.out.println("quedan: " + super8.size() + " super8s");
         } else if (tipo == DatosProducto.SNICKERS.getCualProducto()) {
             p = snickers.getObj();
+            intCompra = 4;
             System.out.println("quedan: " + snickers.size() + " snickers");
         }
 
 
         if (p == null) {
+            intCompra = 0;
             JOptionPane.showMessageDialog(null, "No quedan productos");
             sabor = null; 
         } else {
+            productoComprado = p;
             sabor = p.sabor();
             System.out.println("Producto comprado: " + sabor + ", valor: " + PanelComprador.precio + ", Saldo: " + PanelComprador.saldo);
             PanelComprador.saldo -=  PanelComprador.precio;
             System.out.println("Saldo despues de comprar: " + PanelComprador.saldo);
             System.out.println("");
+            
         }
-        return p;
     }
 
     public Deposito getVuelto(){    
@@ -112,9 +133,21 @@ public class Expendedor {
             System.out.println("moneda extraída serie: "+monVu.get(i).getSerie());
             vuelto += monVu.get(i).getValor();
         }
-        System.out.println("vuelto: "+vuelto);
+        System.out.println("vuelto: "+ vuelto);
         System.out.println("getVuelto");
         return monVu;
+    }
+
+    /**
+     * getProducto() simula un deposito de tamaño 1, en el que se almacena el producto comprado
+     * 
+     * @return el Producto que se devuelve del Deposito
+     */
+    public Producto getProducto() {
+        Producto p = productoComprado;
+        System.out.println("getProducto: "+p.sabor()+" serie: "+p.getSerie());
+        productoComprado = null;
+        return p;
     }
 
     /**

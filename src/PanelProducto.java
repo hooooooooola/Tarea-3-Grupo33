@@ -25,10 +25,36 @@ public class PanelProducto extends JPanel{
         this.setPreferredSize(new java.awt.Dimension(100, 100));
         
         ImageIcon imagenproducto = new ImageIcon("src\\main\\java\\imagenes\\"+nombrearchivo);
+        ImageIcon compra;
         // JLabel foto = new JLabel(imagenproducto);
         
-                
 
+        if(Expendedor.intCompra == 1){
+            Expendedor.intCompra = 0;
+            compra = new ImageIcon("src\\main\\java\\imagenes\\cocacola.png");
+            compra.paintIcon(this ,g ,50,650);
+        }
+        else if(Expendedor.intCompra == 2){
+            Expendedor.intCompra = 0;
+            compra = new ImageIcon("src\\main\\java\\imagenes\\fanta.png");
+            compra.paintIcon(this ,g ,50,650);
+        }
+        else if(Expendedor.intCompra == 3){
+            Expendedor.intCompra = 0;
+            compra = new ImageIcon("src\\main\\java\\imagenes\\sprite.png");
+            compra.paintIcon(this ,g ,50,650);
+        }
+        else if(Expendedor.intCompra == 4){
+            Expendedor.intCompra = 0;
+            compra = new ImageIcon("src\\main\\java\\imagenes\\snickers.png");
+            compra.paintIcon(this ,g ,50,650);
+        }
+        else if(Expendedor.intCompra == 5){
+            Expendedor.intCompra = 0;
+            compra = new ImageIcon("src\\main\\java\\imagenes\\super8.png");
+            compra.paintIcon(this ,g ,50,650);
+        }
+        
         if (nombrearchivo == "cocacola.png"){
             for(int i=0;i<Expendedor.coca.size();i++){
                 if(i<5){
@@ -60,5 +86,6 @@ public class PanelProducto extends JPanel{
                 }
             }  
         }
+
     }
 }

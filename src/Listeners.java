@@ -84,6 +84,7 @@ public class Listeners {
             if (PanelComprador.saldo !=0) {
                 expendedor.getVuelto(); // deposito de monedas del vuelto hay que mostrarlas de alguna fomra
                 PanelComprador.setLabelSaldoValor(PanelComprador.saldo);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "No hay saldo");
             }

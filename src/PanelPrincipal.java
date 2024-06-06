@@ -30,6 +30,7 @@ public class PanelPrincipal extends JPanel implements MouseListener {
             // Cuando se dispara el evento de comprar en PanelComprador,
             // se llama a este código para repintar PanelPrincipal
             repaint();
+            
         });
         // dep = new PanelDeposito();
 
@@ -88,6 +89,17 @@ public class PanelPrincipal extends JPanel implements MouseListener {
         } else if (y >= PanelProducto.Estante2 + 20 && y <= PanelProducto.Estante2 + 120) {
             productosClick(x, DatosProducto.SUPER8, 98, 244);
             productosClick(x, DatosProducto.SNICKERS, 246, 395 );
+        }
+
+        if(y >= 670 && y <= 770 && x >= 67 && x <= 167){
+            if(com.getExpendedor().getProductoComprado() == null){
+                JOptionPane.showMessageDialog(null, "Aún no has comprado un producto para retirar");
+            }
+            else{
+                com.getExpendedor().getProducto();
+                repaint();
+            }
+            
         }
     }
     
