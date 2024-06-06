@@ -1,14 +1,32 @@
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * Panel que nos permite "pintar" las imágenes de cada producto en pantalla.
+ * 
+ * @author Darío Sepúlveda
+ * @since 01 de junio de 2024
+ * 
+ * @param nombreArchivo el nombre que tiene el archivo que contiene la imagen del producto.
+ * @param cualProducto el producto que se va a pintar en el expendedor.
+ * 
+ * @param Estante1 Posición de los productos con respecto a la imagen del expendedor
+ * @param Estante2 Posición de los productos con respecto a la imagen del expendedor
+ */
+
+
 public class PanelProducto extends JPanel{
     private String nombrearchivo;
     private int posX = 0;
     private int posY = 0;
 
-    //Posición de los productos con respecto a la imagen del expendedor
+
     public static final int Estante1 = 135;
     public static final int Estante2 = 300;
     
+    /**
+     * Constructor del PanelProducto: les da un valor a las variables necesarias y quita el layout de este agregando un puntero nulo, ya que no es utilizado.
+     */
     public PanelProducto(int cualProducto, String nombrearchivo, int posX, int posY){
         super();
         
@@ -19,6 +37,10 @@ public class PanelProducto extends JPanel{
     }
 
     
+    /**
+     * El método paintComponent "pinta" el producto en la coordenada deseada para que se vea de forma correcta dentro del panel principal (sobre el expendedor).
+     * Coloca un número máximo de productos por cada tipo de estos, de acuerdo al espacio que hay en pantalla para mostrarlos.
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
