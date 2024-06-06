@@ -2,9 +2,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+/**
+ * La clase Listeners contiene todos los receptores de cada acción que haga el usuario. Se ocupan en los botones y ejecuciones del mouse.
+ * 
+ * @author Felipe Tillería
+ * @since 1 de junio de 2024
+ * 
+ */
 public class Listeners {
     
-
+    /**
+     * La clase Boton100 ejecuta la acción de insertar una moneda de 100 a la máquina.
+     * @see Moneda100
+     */
     public class Boton100 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -18,6 +28,10 @@ public class Listeners {
         return new Boton100();
     }
 
+    /**
+     * La clase Boton500 ejecuta la acción de insertar una moneda de 500 a la máquina.
+     * @see Moneda500
+     */
     public class Boton500 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -31,6 +45,10 @@ public class Listeners {
         return new Boton500();
     }
 
+    /**
+     * La clase Boton1000 ejecuta la acción de insertar una moneda de 1000 a la máquina.
+     * @see Moneda1000
+     */
     public class Boton1000 implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -44,6 +62,13 @@ public class Listeners {
         return new Boton1000();
     }
 
+
+    /**
+     * La clase BotonComprar ejecuta la lógica de comprar un producto, haciendo que este baje al depósito para que el usuario lo reciba.
+     * 
+     * @param expendedor el expendedor del que se compró el producto
+     * @param productoElegido el tipo de producto que se compró
+     */
     public class BotonComprar implements ActionListener {
         private Expendedor expendedor;
         static int productoElegido;
@@ -53,7 +78,9 @@ public class Listeners {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            /**
+             * Sólo se compra un producto si es que el saldo del usuario es suficiente para este, en caso contrario no ocurre nada dentro del expendedor.
+             */
             if (PanelComprador.Saldo - PanelComprador.Precio >= 0) {
                 expendedor.comprarProducto(productoElegido); 
                 PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
@@ -62,7 +89,10 @@ public class Listeners {
             }
             
         }
-
+        /**
+         * Método getter para el producto que se compró.
+         * @return el producto elegido.
+         */
         public static int getProductoElegido() {
             return productoElegido;
         }
@@ -72,16 +102,28 @@ public class Listeners {
         return new BotonComprar(expendedor);
     }
 
+
+    /**
+     * La clase BotonVuelto recibe la acción de presionar el botón de vuelto del expendedor, ejecutando su lógica correspondiente.
+     * @param expendedor el expendedor del que se compró el producto
+     * 
+     */
     public class BotonVuelto implements ActionListener {
         Expendedor expendedor;
         public BotonVuelto(Expendedor expendedor) {
             this.expendedor = expendedor;
         }
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
+            /**
+             * Devuelve el saldo que se había insertado, en caso de no tener muestra un mensaje en pantalla con el aviso de que no hay.
+             */
             if (PanelComprador.Saldo !=0) {
-                expendedor.getVuelto(); // deposito de monedas del vuelto hay que mostrarlas de alguna fomra
+                /**
+                 * Acceso al depósito de monedas del vuelto
+                 */
+                expendedor.getVuelto(); 
                 PanelComprador.setlabelSaldoValor(PanelComprador.Saldo);
             } else {
                 JOptionPane.showMessageDialog(null, "No hay saldo");
