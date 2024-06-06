@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * La clase Deposito representa un deposito que almacena productos y
@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Joseph Matamala
  * @since 22 de abril de 2024
  */
-public class Deposito<T> {
+public class Deposito<T>{
     private ArrayList<T> t; // Lista de objetos
 
     /**
@@ -37,5 +37,25 @@ public class Deposito<T> {
             return null;
         }
         return t.remove(0);
+    }
+
+    /**
+     * Obtiene el objeto en el indice señalado de la lista.
+     *
+     * @return El objeto obtenido o null si la lista esta vacia.
+     */
+    public T get(int i) {
+        if (t.isEmpty()) {
+            return null;
+        }
+        return t.get(i);
+    }
+
+    public int size() {
+        return t.size();
+    }
+
+    public void clear() {
+        t.clear();
     }
 }
